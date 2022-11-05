@@ -1,26 +1,16 @@
-#include<iostream>
-#include<cmath>
+#include<bits/stdc++.h>
 using namespace std;
 
-int GCD(int u, int v) {
-    while (v != 0) {
-        int r = u % v;
-        u = v;
-        v = r;
-    }
-    return u;
+long long LCM(long long a, long long b){
+	return a*b/ __gcd(a, b);
 }
 
-long long LCM(int x, int y, int z, long long t){
-    int tmp1 = GCD(x, y);
-    long long m = x*y/tmp1;
-    long long tmp2 = GCD(m, z);
-    long long n = m*z/tmp2;
-    long long tmp = n;
-    long long tmp3 = t/n;
-    n*=tmp3;
+long long LCM_3(int x, int y, int z, long long t){
+	long long m = LCM(x, y);
+	long long n = LCM(m, z), tmp = n;
+	n = n*(t/tmp);
     while(1){
-        if(n>=(t*10))
+        if(n>=t*10)
             return 0;
         if(n>=t)
             return n;
@@ -28,15 +18,14 @@ long long LCM(int x, int y, int z, long long t){
     }
 }
 
-int main()
-{
+int main(){
     int t;
     cin>>t;
     while(t--){
         int x, y, z, n;
         cin>>x>>y>>z>>n;
         long long m = pow(10, n-1);
-        long long cnt = LCM(x, y, z, m);
+        long long cnt = LCM_3(x, y, z, m);
         if(cnt)
             cout<<cnt<<endl;
         else

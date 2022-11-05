@@ -29,6 +29,13 @@ void next_permutaion(int a[], int n, int &stop){
 	}
 }
 
+int check(int a[], int n){
+	for(int i=0; i<=n/2; i++)
+		if(a[i]!=a[n-i-1])
+			return 0;
+	return 1;
+}
+
 int main(){
 	int t;
 	cin>>t;
@@ -37,13 +44,14 @@ int main(){
 		cin>>n;
 		int a[n]; 
 		for(int i=1; i<=n; i++)
-			a[i] = i;
-		int stop = 1;
-		while(stop){
+			cin>>a[i];
+		int stop = 5;
+		int cnt = 0;
+		while(stop--){
 			print(a, n);
 			next_permutaion(a, n, stop);
 		}
-		cout<<endl; 
+		cout<<cnt<<endl; 
 	} 
 }
 

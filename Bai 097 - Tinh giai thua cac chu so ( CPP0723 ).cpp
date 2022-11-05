@@ -1,42 +1,22 @@
-#include<iostream>
-#include<cstring>
-#include<sstream>
+#include<bits/stdc++.h>
 using namespace std;
 
-
-void swap_char(char &x, char &y){
-    char tmp = x;
-    x = y;
-    y = tmp;
+bool cmp(char a, char b){
+	return a>b;
 }
 
-int main()
-{
-    int t;
+int main(){
+    int t, n;
     cin>>t;
     while(t--){
-        long long n, a;
+        string a;
         cin>>n>>a;
-        string s[10], number = "";
-        s[2] = "2";
-        s[3] = "3";
-        s[4] = "223";
-        s[5] = "5";
-        s[6] = "53";
-        s[7] = "7";
-        s[8] = "7222";
-        s[9] = "7332";
-        while(a>0){
-            int tmp = a%10;
-            if(tmp>1)
-                number += s[tmp];
-            a/=10;
-        }
-        for(int i=0; i<number.size(); i++){
-            for(int j=i+1; j<number.size(); j++)
-                if(number[i] < number[j])
-                     swap_char(number[i], number[j]);
-        }
+        string s[10] = {"0", "0", "2", "3", "322", "5", "53", "7", "7222", "7332"}, number = "";
+        for(int i=0; i<a.size(); i++){
+        	if(a[i] > '1')
+        		number += s[a[i]-'0'];
+		}
+        sort(number.begin(), number.end(), cmp);
         cout<<number<<endl;
     }
     return 0;
